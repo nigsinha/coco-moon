@@ -30,13 +30,24 @@ function App() {
       <Navbar cart={cart} />
       <Routes>
         <Route path="/" element={<Home />} />
+        
         <Route 
           path="/product/:id" 
           element={<ProductDetail addToCart={addToCart} />} 
         />
-        <Route path="/cart" element={<Cart cart={cart} />} />
-        <Route path="/checkout" element={<Checkout />} />
+
+        <Route 
+          path="/cart" 
+          element={<Cart cart={cart} setCart={setCart} />} 
+        />
+
+        <Route 
+          path="/checkout" 
+          element={<Checkout setCart={setCart} />} 
+        />
+
         <Route path="/success" element={<Success />} />
+
       </Routes>
     </BrowserRouter>
   );
