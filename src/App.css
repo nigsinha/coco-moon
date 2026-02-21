@@ -1,5 +1,10 @@
 /* Custom styles for Coco Moon */
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f9fa;
@@ -95,4 +100,141 @@ h2 {
   width: 100%;
   height: 120px;
   object-fit: cover;
+}
+
+/* Footer styles */
+.site-footer {
+  background: linear-gradient(90deg, #f6efe6, #fff8ec);
+  color: #6b4b2a;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  font-size: 0.95rem;
+
+  /* ensure footer content aligns with main container */
+  display: block;
+}
+
+/* ensure the immediate app wrapper uses full height flex layout */
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer link styles */
+.footer-links a {
+  color: #6b4b2a;
+}
+.footer-links a:hover {
+  color: #8b4513;
+}
+
+/* Responsive tweaks for product cards and images */
+@media (max-width: 768px) {
+  .product-card {
+    min-height: 0; /* let cards size naturally on small screens */
+  }
+  .card img {
+    height: 160px;
+  }
+  .product-detail-image {
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1199px) {
+  .card img {
+    height: 180px;
+  }
+  .product-card {
+    min-height: 320px;
+  }
+}
+
+/* Privacy modal styles */
+.privacy-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 16px;
+}
+.privacy-modal {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 720px;
+  width: 100%;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  overflow: auto;
+  max-height: 85vh;
+}
+.privacy-modal-body {
+  padding: 20px;
+}
+
+/* Modal typography fixes: keep text readable and properly spaced */
+.privacy-modal-body h1 {
+  font-size: 1.6rem;
+  margin: 0 0 0.5rem 0;
+  color: #5a3720;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.privacy-modal-body h3 {
+  font-size: 1.05rem;
+  margin: 1.1rem 0 0.4rem 0;
+  color: #5a3720;
+  font-weight: 700;
+}
+.privacy-modal-body p {
+  color: #3b3b3b;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin: 0 0 0.9rem 0;
+}
+.privacy-modal-body .text-end {
+  margin-top: 1rem;
+}
+
+@media (max-width: 576px) {
+  .privacy-modal-body h1 { font-size: 1.3rem; }
+  .privacy-modal-body h3 { font-size: 1rem; }
+  .privacy-modal { padding: 0; }
+}
+
+@media (max-width: 576px) {
+  .privacy-modal {
+    max-width: 100%;
+  }
+}
+
+/* Responsive footer sizing */
+@media (max-width: 576px) {
+  .site-footer {
+    font-size: 0.85rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .site-footer .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+  .site-footer {
+    font-size: 0.92rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+  .site-footer {
+    font-size: 1rem;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 }

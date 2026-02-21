@@ -6,6 +6,8 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Privacy from "./pages/Privacy";
 
 function App() {
 
@@ -40,8 +42,10 @@ function App() {
 
   return (
     <HashRouter>
-      <Navbar cart={cart} />
-      <Routes>
+      <div className="app-root d-flex flex-column min-vh-100">
+        <Navbar cart={cart} />
+        <main className="flex-fill">
+          <Routes>
         <Route path="/" element={<Home />} />
         
         <Route 
@@ -61,7 +65,11 @@ function App() {
 
         <Route path="/success" element={<Success />} />
 
-      </Routes>
+              <Route path="/privacy" element={<Privacy />} />
+            </Routes>
+        </main>
+        <Footer />
+      </div>
     </HashRouter>
   );
 }
