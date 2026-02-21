@@ -1,20 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Checkout({ setCart }) {
+function Checkout({ cart, setCart }) {
 
   const navigate = useNavigate();
 
   const [address, setAddress] = useState("");
   const [payment, setPayment] = useState("COD");
+  const [error, setError] = useState("");
+
+  // Prevent checkout if cart is empty
+  if (!cart || cart.length === 0) {
+    navigate("/");
+    return null;
+  }
 
   const handleOrder = () => {
     if (!address.trim()) {
-      alert("Please enter delivery address");
+      setError("Please enter delivery address.");
       return;
     }
 
-    // 🔥 Clear cart after successful order
+    setError("");
+
+    // Clear cart
     setCart([]);
 
     // Navigate to success page
@@ -25,8 +34,17 @@ function Checkout({ setCart }) {
     <div className="container mt-4">
       <h2>Checkout</h2>
 
+      {error && (
+        <div className="alert alert-danger">
+          {error}
+        </div>
+      )}
+
       <div className="mb-3">
-        <label className="form-label">Delivery Address</label>
+        <label className="form-label">
+          Delivery Address
+        </label>
+
         <textarea
           className="form-control"
           rows="3"
@@ -37,7 +55,10 @@ function Checkout({ setCart }) {
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Payment Method</label>
+        <label className="form-label">
+          Payment Method
+        </label>
+
         <select
           className="form-select"
           value={payment}
@@ -49,7 +70,10 @@ function Checkout({ setCart }) {
         </select>
       </div>
 
-      <button className="btn btn-success" onClick={handleOrder}>
+      <button
+        className="btn btn-success"
+        onClick={handleOrder}
+      >
         Place Order
       </button>
     </div>

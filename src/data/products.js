@@ -2,7 +2,7 @@ const products = [
   {
     id: 1,
     name: "Premium Dark Chocolate",
-    price: 250,
+    price: 200,
     weight: "125gm",
     description: "Premium dark chocolate with rich cocoa flavor.",
     image: "/dark-chocolate.jpg"
@@ -10,7 +10,7 @@ const products = [
   {
     id: 2,
     name: "Premium Milk Chocolate",
-    price: 275,
+    price: 175,
     weight: "150gm",
     description: "Creamy milk chocolate with roasted almonds.",
     image: "/milk-chocolate.jpg"
@@ -18,7 +18,7 @@ const products = [
   {
     id: 3,
     name: "Premium Kunafa Chocolate",
-    price: 300,
+    price: 250,
     weight: "100gm",
     description: "Premium chocolate filled with crispy roasted kunafa and almonds.",
     image: "/kunafa-chocolate.jpg"
