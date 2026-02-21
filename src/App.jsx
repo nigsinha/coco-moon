@@ -10,18 +10,31 @@ import Navbar from "./components/Navbar";
 function App() {
 
   const [cart, setCart] = useState([]);
+  const MAX_QTY = 5;
 
   const addToCart = (product, quantity) => {
+    quantity = parseInt(quantity) || 1;
+    if (quantity < 1) quantity = 1;
+
     const existing = cart.find(item => item.id === product.id);
 
     if (existing) {
+      const newQty = Math.min(MAX_QTY, existing.quantity + quantity);
+      if (newQty === existing.quantity) {
+        window.alert('Maximum quantity of 5 reached for this product.');
+        return;
+      }
       setCart(cart.map(item =>
         item.id === product.id
-          ? { ...item, quantity: item.quantity + quantity }
+          ? { ...item, quantity: newQty }
           : item
       ));
     } else {
-      setCart([...cart, { ...product, quantity }]);
+      const qtyToAdd = Math.min(MAX_QTY, quantity);
+      if (qtyToAdd < quantity) {
+        window.alert('Added maximum quantity (5) for this product.');
+      }
+      setCart([...cart, { ...product, quantity: qtyToAdd }]);
     }
   };
 

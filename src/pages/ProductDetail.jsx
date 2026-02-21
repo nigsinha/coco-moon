@@ -39,10 +39,17 @@ function ProductDetail({ addToCart }) {
               type="number"
               id="quantity"
               min="1"
+              max="5"
               value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value))}
+              onChange={(e) => {
+                let v = parseInt(e.target.value) || 1;
+                if (v < 1) v = 1;
+                if (v > 5) v = 5;
+                setQuantity(v);
+              }}
               className="form-control w-50"
             />
+            <div className="form-text">Maximum 5 units per product.</div>
           </div>
 
           <button
