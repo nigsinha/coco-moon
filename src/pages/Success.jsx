@@ -18,9 +18,16 @@ function Success() {
           Your delicious chocolates will be delivered soon.
         </p>
 
-        <Link to="/" className="btn btn-dark mt-4">
-          Continue Shopping
-        </Link>
+        {/* Updated Premium Centered Button */}
+        <div className="mt-4 text-center">
+          <Link 
+            to="/" 
+            className="btn btn-dark px-5 py-2 fw-semibold rounded-pill"
+            style={{ minWidth: "220px" }}
+          >
+            Continue Shopping
+          </Link>
+        </div>
 
       </div>
 

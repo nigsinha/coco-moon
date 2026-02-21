@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Checkout({ cart, setCart }) {
@@ -9,11 +9,12 @@ function Checkout({ cart, setCart }) {
   const [payment, setPayment] = useState("COD");
   const [error, setError] = useState("");
 
-  // Prevent checkout if cart is empty
-  if (!cart || cart.length === 0) {
-    navigate("/");
-    return null;
-  }
+  // ✅ Protect checkout page on mount only (not on cart changes)
+  useEffect(() => {
+    if (!cart || cart.length === 0) {
+      window.location.hash = "#/";
+    }
+  }, []); // Empty dependency array - only run on mount
 
   const handleOrder = () => {
     if (!address.trim()) {
@@ -23,11 +24,11 @@ function Checkout({ cart, setCart }) {
 
     setError("");
 
-    // Clear cart
-    setCart([]);
+    // Navigate to success page FIRST (before clearing cart)
+    window.location.hash = "#/success";
 
-    // Navigate to success page
-    navigate("/success");
+    // Clear cart after navigation
+    setCart([]);
   };
 
   return (
@@ -41,9 +42,7 @@ function Checkout({ cart, setCart }) {
       )}
 
       <div className="mb-3">
-        <label className="form-label">
-          Delivery Address
-        </label>
+        <label className="form-label">Delivery Address</label>
 
         <textarea
           className="form-control"
@@ -51,13 +50,11 @@ function Checkout({ cart, setCart }) {
           placeholder="Enter full delivery address"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-        ></textarea>
+        />
       </div>
 
       <div className="mb-3">
-        <label className="form-label">
-          Payment Method
-        </label>
+        <label className="form-label">Payment Method</label>
 
         <select
           className="form-select"
