@@ -12,14 +12,15 @@ function Home() {
       <h2 className="mb-4">Our Premium Chocolates</h2>
 
       <div className="row">
-        {products.map(({ id, name, image, description, price, weight }) => (
+        {products.map(({ id, name, media, description, price, weight }) => (
           <div className="col-md-4 mb-4" key={id}>
             <div className="card h-100 product-card shadow-sm">
 
               <img
-                src={image || "/placeholder.jpg"}
+                src={media?.[0]?.url || "/placeholder.jpg"}
                 className="card-img-top"
                 alt={`${name} chocolate`}
+                onError={(e) => (e.target.src = "/placeholder.jpg")}
               />
 
               <div className="card-body d-flex flex-column">

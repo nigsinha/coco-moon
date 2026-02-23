@@ -36,10 +36,10 @@ function Cart({ cart, setCart }) {
 
                     <div className="col-md-3 text-center p-2">
                       <img
-                        src={item.image || "/placeholder.jpg"}
+                        src={item.media?.[0]?.url || "/placeholder.jpg"}
                         className="cart-item-image rounded img-fluid"
                         alt={`${item.name} chocolate`}
-                        onError={(e) => e.target.src = "/placeholder.jpg"}
+                        onError={(e) => (e.target.src = "/placeholder.jpg")}
                       />
                     </div>
 

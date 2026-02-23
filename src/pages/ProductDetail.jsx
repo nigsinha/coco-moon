@@ -12,6 +12,7 @@ function ProductDetail({ addToCart }) {
   );
 
   const [quantity, setQuantity] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   if (!product) {
     return (
@@ -24,17 +25,57 @@ function ProductDetail({ addToCart }) {
     );
   }
 
+  if (!product.media) return null;
+
   return (
     <div className="container mt-4">
       <div className="row g-4">
         
         <div className="col-md-6 text-center">
-          <img
-            src={product.image || "/placeholder.jpg"}
-            className="product-detail-image rounded img-fluid"
-            alt={`${product.name} chocolate`}
-            onError={(e) => e.target.src = "/placeholder.jpg"}
-          />
+          <div>
+            {product.media[currentSlide].type === "image" ? (
+              <img
+                src={product.media[currentSlide].url}
+                className="product-detail-image rounded img-fluid"
+                alt={`${product.name} media`}
+                onError={(e) => (e.target.src = "/placeholder.jpg")}
+              />
+            ) : (
+              <video
+                src={product.media[currentSlide].url}
+                controls
+                className="rounded w-100"
+              />
+            )}
+
+            <div className="mt-3">
+              <button
+                className="btn btn-outline-dark me-2"
+                onClick={() =>
+                  setCurrentSlide(
+                    currentSlide === 0
+                      ? product.media.length - 1
+                      : currentSlide - 1
+                  )
+                }
+              >
+                Prev
+              </button>
+
+              <button
+                className="btn btn-outline-dark"
+                onClick={() =>
+                  setCurrentSlide(
+                    currentSlide === product.media.length - 1
+                      ? 0
+                      : currentSlide + 1
+                  )
+                }
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className="col-md-6">
