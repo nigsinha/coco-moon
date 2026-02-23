@@ -167,6 +167,25 @@ h2 {
 /* FOOTER */
 /* ========================= */
 
+footer {
+  background-color: #2c3e50 !important;
+  color: white;
+  padding: 2rem 0;
+  border-top: 3px solid #8b4513;
+  margin-top: auto;
+}
+
+footer a {
+  color: #daa520;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #f0e68c;
+  text-decoration: underline;
+}
+
 .site-footer {
   background: linear-gradient(90deg, #f6efe6, #fff8ec);
   color: #6b4b2a;
@@ -186,6 +205,96 @@ h2 {
 
 .footer-links a:hover {
   color: #8b4513;
+}
+
+/* ========================= */
+/* PRIVACY & CONTACT MODAL */
+/* ========================= */
+
+.privacy-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.privacy-modal {
+  background-color: white;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.privacy-modal-body {
+  padding: 2.5rem;
+}
+
+.privacy-modal-body h1 {
+  color: #8b4513;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.privacy-modal-body h3 {
+  color: #a0522d;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.privacy-modal-body p {
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.privacy-modal-body .btn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 2rem;
+  font-weight: 600;
+}
+
+/* Scrollbar styling for modal */
+.privacy-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.privacy-modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.privacy-modal::-webkit-scrollbar-thumb {
+  background: #8b4513;
+  border-radius: 10px;
+}
+
+.privacy-modal::-webkit-scrollbar-thumb:hover {
+  background: #a0522d;
 }
 
 /* ========================= */

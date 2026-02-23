@@ -5,29 +5,49 @@ function Footer() {
 
   return (
     <footer className="bg-dark text-white mt-auto">
-      <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 py-3">
+            <p className="mb-0">
+              © {new Date().getFullYear()} Myra & Team. 
+              <br />
+              Handcrafted with Passion. All rights reserved.
+            </p>
+          </div>
 
-        <div>
-          © {new Date().getFullYear()} Myra & Team. 
-          Handcrafted with Passion. All rights reserved.
+          <div className="col-md-6 py-3 text-md-end">
+            <button 
+              type="button"
+              className="btn btn-link text-white text-decoration-none fw-semibold p-0"
+              onClick={() => setShowModal(true)}
+              style={{ cursor: "pointer", fontSize: "1rem" }}
+            >
+              Privacy & Contact
+            </button>
+          </div>
         </div>
-
-        <div className="mt-2 mt-md-0">
-          <button 
-            type="button"
-            className="btn btn-link text-white text-decoration-none p-0 me-3"
-            onClick={() => setShowModal(true)}
-          >
-            Privacy & Contact
-          </button>
-        </div>
-
       </div>
 
       {/* Combined Privacy & Contact Modal */}
       {showModal && (
         <div className="privacy-modal-overlay" onClick={() => setShowModal(false)}>
           <div className="privacy-modal" onClick={(e) => e.stopPropagation()}>
+            {/* Close Button (X) */}
+            <div style={{ position: "relative", paddingBottom: "1rem" }}>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setShowModal(false)}
+                aria-label="Close"
+                style={{
+                  position: "absolute",
+                  top: "1.5rem",
+                  right: "1.5rem",
+                  zIndex: 1,
+                }}
+              ></button>
+            </div>
+
             <div className="privacy-modal-body">
               <h1>Privacy Policy & Contact</h1>
 
@@ -42,11 +62,19 @@ function Footer() {
               <h3>Payment Security</h3>
               <p>Payments are processed securely through trusted third-party providers.</p>
 
-              <h3>Contact Us - +91-9999988888</h3>
-              <p>Email: support@cocomoon.com</p>
+              <h3>Contact Us</h3>
+              <p>
+                <strong>Phone:</strong> +91-9999988888<br />
+                <strong>Email:</strong> support@cocomoon.com
+              </p>
 
-              <div className="text-end mt-3">
-                <button className="btn btn-secondary" onClick={() => setShowModal(false)}>Close</button>
+              <div className="text-end mt-4">
+                <button 
+                  className="btn btn-secondary fw-semibold" 
+                  onClick={() => setShowModal(false)}
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
