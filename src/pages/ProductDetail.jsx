@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import products from "../data/products";
 
 function ProductDetail({ addToCart }) {
@@ -13,6 +13,11 @@ function ProductDetail({ addToCart }) {
 
   const [quantity, setQuantity] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // 🔹 Reset slide when product changes (prevents glitch)
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [productId]);
 
   if (!product) {
     return (
@@ -32,12 +37,17 @@ function ProductDetail({ addToCart }) {
       <div className="row g-4">
         
         <div className="col-md-6 text-center">
-          <div>
+          {/* 🔹 Fixed height container to prevent layout shift */}
+          <div style={{ minHeight: "400px" }}>
             {product.media[currentSlide].type === "image" ? (
               <img
                 src={product.media[currentSlide].url}
                 className="product-detail-image rounded img-fluid"
                 alt={`${product.name} media`}
+                style={{ height: "400px", objectFit: "contain", backgroundColor: "#f8f9fa" }}
+                loading="lazy"
+                width="400"
+                height="400"
                 onError={(e) => (e.target.src = "/placeholder.jpg")}
               />
             ) : (
@@ -45,6 +55,11 @@ function ProductDetail({ addToCart }) {
                 src={product.media[currentSlide].url}
                 controls
                 className="rounded w-100"
+                style={{ height: "400px", backgroundColor: "#f8f9fa" }}
+                preload="metadata"
+                width="400"
+                height="400"
+                poster={product.media.find(m => m.type === 'image')?.url || "/placeholder.jpg"}
               />
             )}
 

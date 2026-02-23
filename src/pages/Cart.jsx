@@ -15,7 +15,7 @@ function Cart({ cart, setCart }) {
 
   return (
     <div className="container mt-4">
-      <h2>Your Cart</h2>
+      <h2 className="mb-4">Shopping Cart</h2>
 
       {cart.length === 0 ? (
         <div className="text-center mt-5">
@@ -27,73 +27,94 @@ function Cart({ cart, setCart }) {
           </Link>
         </div>
       ) : (
-        <>
-          <div className="row">
+        <div className="row">
+          
+          {/* LEFT SIDE – CART ITEMS */}
+          <div className="col-lg-8">
             {cart.map(item => (
-              <div key={item.id} className="col-md-12 mb-3">
-                <div className="card shadow-sm">
-                  <div className="row g-0 align-items-center">
+              <div key={item.id} className="card mb-2 shadow-sm p-2">
+                <div className="row align-items-center">
 
-                    <div className="col-md-3 text-center p-2">
+                  {/* Product Image */}
+                  <div className="col-3 col-md-2 text-center">
+                    <div className="cart-image-wrapper">
                       <img
                         src={item.media?.[0]?.url || "/placeholder.jpg"}
-                        className="cart-item-image rounded img-fluid"
-                        alt={`${item.name} chocolate`}
+                        className="cart-item-image"
+                        alt={item.name}
+                        loading="lazy"
+                        width="110"
+                        height="110"
                         onError={(e) => (e.target.src = "/placeholder.jpg")}
                       />
-                    </div>
 
-                    <div className="col-md-6">
-                      <div className="card-body">
-                        <h5 className="card-title">
-                          {item.name}
-                        </h5>
-
-                        <p className="text-muted small">
-                          {item.weight}
-                        </p>
-
-                        <p className="card-text">
-                          Quantity: {item.quantity}
-                        </p>
-
-                        <p className="product-price fw-bold">
-                          Price: ₹{(item.price * item.quantity).toLocaleString()}
-                        </p>
+                      {/* Hover Preview */}
+                      <div className="cart-preview">
+                        <img
+                          src={item.media?.[0]?.url || "/placeholder.jpg"}
+                          alt={item.name}
+                        />
                       </div>
                     </div>
-
-                    <div className="col-md-3 d-flex align-items-center justify-content-center">
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => removeItem(item.id)}
-                      >
-                        Remove
-                      </button>
-                    </div>
-
                   </div>
+
+                  {/* Product Details */}
+                  <div className="col-9 col-md-7">
+                    <h6 className="mb-1 fw-bold">{item.name}</h6>
+                    <p className="text-muted small mb-1">
+                      {item.weight}
+                    </p>
+                    <p className="mb-1 small">
+                      Quantity: {item.quantity}
+                    </p>
+                    <p className="fw-bold mb-0">
+                      ₹{(item.price * item.quantity).toLocaleString()}
+                    </p>
+                  </div>
+
+                  {/* Remove Button */}
+                  <div className="col-md-3 text-md-end mt-3 mt-md-0">
+                    <button
+                      className="btn btn-outline-danger btn-sm"
+                      onClick={() => removeItem(item.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="card mt-4 p-3 shadow-sm">
-            <h4 className="mb-3">
-              Total: ₹{totalPrice.toLocaleString()}
-            </h4>
+          {/* RIGHT SIDE – ORDER SUMMARY */}
+          <div className="col-lg-4">
+            <div className="card shadow-sm p-4">
+              <h5 className="mb-3">Order Summary</h5>
 
-            <div className="d-flex gap-2">
-              <Link to="/" className="btn btn-secondary">
-                Add More Items
+              <div className="d-flex justify-content-between mb-2">
+                <span>Total Items</span>
+                <span>{cart.length}</span>
+              </div>
+
+              <div className="d-flex justify-content-between mb-3">
+                <span>Total Price</span>
+                <span className="fw-bold">
+                  ₹{totalPrice.toLocaleString()}
+                </span>
+              </div>
+
+              <Link to="/checkout" className="btn btn-success w-100 mb-2">
+                Proceed to Buy
               </Link>
 
-              <Link to="/checkout" className="btn btn-success">
-                Proceed to Buy
+              <Link to="/" className="btn btn-outline-secondary w-100">
+                Continue Shopping
               </Link>
             </div>
           </div>
-        </>
+
+        </div>
       )}
     </div>
   );

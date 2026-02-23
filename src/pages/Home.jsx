@@ -13,13 +13,18 @@ function Home() {
 
       <div className="row">
         {products.map(({ id, name, media, description, price, weight }) => (
-          <div className="col-md-4 mb-4" key={id}>
+          <div className="col-lg-4 col-md-6 mb-4" key={id}>
             <div className="card h-100 product-card shadow-sm">
 
+              {/* 🔹 Fixed height image to prevent layout shift */}
               <img
                 src={media?.[0]?.url || "/placeholder.jpg"}
                 className="card-img-top"
                 alt={`${name} chocolate`}
+                style={{ height: "300px", objectFit: "contain", backgroundColor: "#f8f9fa" }}
+                loading="lazy"
+                width="300"
+                height="300"
                 onError={(e) => (e.target.src = "/placeholder.jpg")}
               />
 

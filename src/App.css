@@ -1,4 +1,6 @@
-/* Custom styles for Coco Moon */
+/* ========================= */
+/* BASE STYLES */
+/* ========================= */
 
 html, body, #root {
   height: 100%;
@@ -10,39 +12,114 @@ body {
   background-color: #f8f9fa;
 }
 
+.container {
+  max-width: 1200px;
+}
+
+/* ========================= */
+/* NAVBAR */
+/* ========================= */
+
 .navbar {
   background: linear-gradient(135deg, #8b4513, #daa520) !important;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* ========================= */
+/* CARD STYLING */
+/* ========================= */
+
 .card {
   border: none;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+  overflow: visible; /* allow preview outside card */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  overflow: visible;
 }
 
-/* Product-specific card sizing to avoid large global card heights */
 .product-card {
-  min-height: 360px; /* keeps product cards consistent but smaller than previous global setting */
+  min-height: 420px;
 }
 
+/* Product Listing Images */
 .card img {
-  height: 200px;
-  object-fit: cover;
-  transition: all 0.3s ease;
+  height: 300px;
+  object-fit: contain;
+  width: 100%;
+  background-color: #f8f9fa;
 }
 
-.card:hover img {
+/* ========================= */
+/* PRODUCT DETAIL IMAGE */
+/* ========================= */
+
+.product-detail-image {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
   object-fit: contain;
-  height: 220px;
+  background-color: #f8f9fa;
 }
+
+/* ========================= */
+/* AMAZON STYLE CART HOVER */
+/* ========================= */
+
+.cart-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Small fixed image */
+.cart-item-image {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* Floating preview */
+.cart-preview {
+  position: absolute;
+  top: 0;                  /* FIXED */
+  left: 120%;
+  width: 320px;
+  max-height: 500px;       /* prevent screen overflow */
+  overflow: auto;          /* scroll if image too tall */
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+/* Show preview */
+.cart-image-wrapper:hover .cart-preview {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Large preview image */
+.cart-preview img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* ========================= */
+/* BUTTON STYLES */
+/* ========================= */
 
 .btn-dark {
   background-color: #8b4513;
@@ -52,16 +129,6 @@ body {
 .btn-dark:hover {
   background-color: #a0522d;
   border-color: #a0522d;
-}
-
-.btn-warning {
-  background-color: #daa520;
-  border-color: #daa520;
-}
-
-.btn-warning:hover {
-  background-color: #b8860b;
-  border-color: #b8860b;
 }
 
 .btn-success {
@@ -74,14 +141,14 @@ body {
   border-color: #006400;
 }
 
-.container {
-  max-width: 1200px;
+.btn-warning {
+  background-color: #daa520;
+  border-color: #daa520;
 }
 
-h2 {
-  color: #8b4513;
-  font-weight: bold;
-  margin-bottom: 30px;
+.btn-warning:hover {
+  background-color: #b8860b;
+  border-color: #b8860b;
 }
 
 .product-price {
@@ -90,151 +157,62 @@ h2 {
   color: #daa520;
 }
 
-.product-detail-image {
-  max-width: 400px;
-  width: 100%;
-  height: auto;
+h2 {
+  color: #8b4513;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
-.cart-item-image {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
+/* ========================= */
+/* FOOTER */
+/* ========================= */
 
-/* Footer styles */
 .site-footer {
   background: linear-gradient(90deg, #f6efe6, #fff8ec);
   color: #6b4b2a;
   border-top: 1px solid rgba(0,0,0,0.05);
   font-size: 0.95rem;
-
-  /* ensure footer content aligns with main container */
-  display: block;
 }
 
-/* ensure the immediate app wrapper uses full height flex layout */
 .app-root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Footer link styles */
 .footer-links a {
   color: #6b4b2a;
 }
+
 .footer-links a:hover {
   color: #8b4513;
 }
 
-/* Responsive tweaks for product cards and images */
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
 @media (max-width: 768px) {
+
   .product-card {
-    min-height: 0; /* let cards size naturally on small screens */
+    min-height: 0;
   }
+
   .card img {
-    height: 160px;
+    height: 200px;
   }
+
   .product-detail-image {
-    max-width: 320px;
+    height: 320px;
   }
-}
 
-@media (min-width: 769px) and (max-width: 1199px) {
-  .card img {
-    height: 180px;
+  .cart-item-image {
+    width: 90px;
+    height: 90px;
   }
-  .product-card {
-    min-height: 320px;
-  }
-}
 
-/* Privacy modal styles */
-.privacy-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1050;
-  padding: 16px;
-}
-.privacy-modal {
-  background: #fff;
-  border-radius: 8px;
-  max-width: 720px;
-  width: 100%;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-  overflow: auto;
-  max-height: 85vh;
-}
-.privacy-modal-body {
-  padding: 20px;
-}
-
-/* Modal typography fixes: keep text readable and properly spaced */
-.privacy-modal-body h1 {
-  font-size: 1.6rem;
-  margin: 0 0 0.5rem 0;
-  color: #5a3720;
-  font-weight: 700;
-  line-height: 1.15;
-}
-.privacy-modal-body h3 {
-  font-size: 1.05rem;
-  margin: 1.1rem 0 0.4rem 0;
-  color: #5a3720;
-  font-weight: 700;
-}
-.privacy-modal-body p {
-  color: #3b3b3b;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  margin: 0 0 0.9rem 0;
-}
-.privacy-modal-body .text-end {
-  margin-top: 1rem;
-}
-
-@media (max-width: 576px) {
-  .privacy-modal-body h1 { font-size: 1.3rem; }
-  .privacy-modal-body h3 { font-size: 1rem; }
-  .privacy-modal { padding: 0; }
-}
-
-@media (max-width: 576px) {
-  .privacy-modal {
-    max-width: 100%;
-  }
-}
-
-/* Responsive footer sizing */
-@media (max-width: 576px) {
-  .site-footer {
-    font-size: 0.85rem;
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-  .site-footer .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
-
-@media (min-width: 577px) and (max-width: 991px) {
-  .site-footer {
-    font-size: 0.92rem;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-}
-
-@media (min-width: 992px) {
-  .site-footer {
-    font-size: 1rem;
-    padding-top: 12px;
-    padding-bottom: 12px;
+  /* Disable hover preview on small screens */
+  .cart-preview {
+    display: none;
   }
 }
