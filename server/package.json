@@ -1,0 +1,30 @@
+{
+  "name": "coco-moon-server",
+  "version": "1.0.0",
+  "description": "Coco Moon Backend API - Node + Express + PostgreSQL",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "prod": "NODE_ENV=production node server.js"
+  },
+  "keywords": [
+    "express",
+    "postgresql",
+    "supabase",
+    "ecommerce",
+    "backend"
+  ],
+  "author": "Nig Sinha",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "pg": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
